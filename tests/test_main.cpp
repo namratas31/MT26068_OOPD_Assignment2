@@ -163,6 +163,20 @@ static void testAcquisition() {
     CHECK(acq.history().size() == 6);
 }
 
+static void testJournal() {
+Journal j("J1", "Science Journal","1234-5678","Publisher",2026,Money::of(100),12,2);
+
+CHECK(j.category() == ResourceCategory::Journal);
+CHECK(!j.isDigital());
+CHECK(j.issn() == "1234-5678");
+CHECK(j.issuesPerYear() == 12);
+CHECK(j.subscriptionYears() == 2);
+CHECK(j.costFor(3) == Money::of(600));
+CHECK_THROWS(j.costFor(0), std::invalid_argument);
+CHECK_THROWS(j.costFor(-1), std::invalid_argument);
+
+
+
 int main() {
     testMoney();
     testResourcesAndCost();
