@@ -174,7 +174,8 @@ CHECK(j.subscriptionYears() == 2);
 CHECK(j.costFor(3) == Money::of(600));
 CHECK_THROWS(j.costFor(0), std::invalid_argument);
 CHECK_THROWS(j.costFor(-1), std::invalid_argument);
-
+CHECK_THROWS(Journal("J2","Invalid Journal","1234-5678","Publisher",2026,Money::of(100),12,0),std::invalid_argument);
+}
 
 
 int main() {
@@ -183,6 +184,7 @@ int main() {
     testCatalog();
     testBudget();
     testAcquisition();
+    testJournal();
     std::cout << (g_checks - g_failures) << "/" << g_checks << " checks passed\n";
     return g_failures == 0 ? 0 : 1;
 }

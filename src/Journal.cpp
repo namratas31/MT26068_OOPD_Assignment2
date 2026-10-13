@@ -20,7 +20,7 @@ throw std::invalid_argument(
 
 Money Journal::costFor(int copies)const{
 requirePositive(copies);
-return unitprice() * copies * subscriptionYears_;
+return unitPrice() * copies * subscriptionYears_;
 }
 
 void Journal::printDetails(std::ostream& os) const {

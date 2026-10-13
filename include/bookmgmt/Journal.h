@@ -5,7 +5,7 @@
 
 namespace bookmgmt {
 
-class Journal : public resource {
+class Journal : public Resource {
 public:
 
 Journal(std::string id, std:: string title, std::string issn, std::string publisher,
