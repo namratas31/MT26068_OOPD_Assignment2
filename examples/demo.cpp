@@ -21,15 +21,20 @@ int main() {
     catalog.emplace<ElectronicResource>("R002", "MATLAB Campus Licence", "MathWorks", 2026,
                                         Money::of(400), "https://licensing.example/matlab",
                                         LicenseModel::Perpetual);
+    catalog.emplace<Journal>(
+	"J001", "Science Journal","1234-5678","Academic Press",2026,Money::of(100),12,2);
 
     std::cout << "=== Catalog ===\n";
     for (const Resource* r : catalog.all()) std::cout << r->summary() << "\n";
 
     std::cout << "\n=== Details of R001 ===\n" << catalog.get("R001");
+    std::cout << "\n=== Details of J001 ===\n" << catalog.get("J001");
+    std::cout << "Cost of 3 copies of J001 for 2 years: " <<catalog.get("J001").costFor(3) <<"\n";
 
     Budget budget(Money::of(20000));
     budget.setQuota(ResourceCategory::Book, {10, Money::of(8000)});
     budget.setQuota(ResourceCategory::ElectronicResource, {40, Money::of(12000)});
+    budget.setQuota(ResourceCategory::Journal, {5, Money::of(2000)});
 
     AcquisitionManager acq(catalog, budget);
 
