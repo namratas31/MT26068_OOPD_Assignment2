@@ -25,7 +25,8 @@ int main() {
     catalog.emplace<Journal>(
 	"J001", "Science Journal","1234-5678","Academic Press",2026,Money::of(100),12,2);
     catalog.emplace<EBook>(
-"EB001","Sample EBook","Open Press",2026,Money::of(250),"EPUB");    
+"EB001","Sample EBook","Open Press",2026,Money::of(250),"EPUB",std::vector<std::string>{"A.Author"},
+"978-0000000000",true);    
 
     std::cout << "=== Catalog ===\n";
     for (const Resource* r : catalog.all()) std::cout << r->summary() << "\n";
