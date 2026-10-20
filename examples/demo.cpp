@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "bookmgmt/bookmgmt.h"
+#include "bookmgmt/EBook.h"
 
 using namespace bookmgmt;
 
@@ -23,6 +24,8 @@ int main() {
                                         LicenseModel::Perpetual);
     catalog.emplace<Journal>(
 	"J001", "Science Journal","1234-5678","Academic Press",2026,Money::of(100),12,2);
+    catalog.emplace<EBook>(
+"EB001","Sample EBook","Open Press",2026,Money::of(250),"EPUB");    
 
     std::cout << "=== Catalog ===\n";
     for (const Resource* r : catalog.all()) std::cout << r->summary() << "\n";
