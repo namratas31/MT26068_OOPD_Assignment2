@@ -25,6 +25,20 @@ Book::Book(std::string id, std::string title, std::vector<std::string> authors,
     if (edition_ < 1) throw std::invalid_argument("edition must be >= 1");
 }
 
+Money Book::costFor(int quantity) const {
+if(quantity <= 0){
+throw std::invalid_argument("quantity must be positive");
+}
+
+Money baseCost = Resource::costFor(quantity);
+
+if(binding_ == Binding::Hardcover) {
+return Money::fromMinor(
+baseCost.minorUnits() * 120/100);
+}
+return baseCost;
+}
+
 void Book::printDetails(std::ostream& os) const {
     os << "  authors: " << joinAuthors(authors_) << "\n"
        << "  isbn: " << isbn_ << "\n"
